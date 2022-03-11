@@ -102,7 +102,13 @@ Image may appear roatated when uploaded.
 
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
           
-          
+            <canvas id="blueCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
+      <script> /* This script initiates the cavas and puts the text on the canvas "blueCanvas" */
+        var canvas = document.getElementById('blueCanvas');
+        var context = canvas.getContext("2d");
+        context.font = '20pt Calibri';
+        context.fillStyle = "black";
+        context.fillText("image anaylsis: blue", 10, 20); // displays "image anaylisis: blue" on cavas until image is uploaded 
           
           
         } // end of img.onload
@@ -144,12 +150,12 @@ Image may appear roatated when uploaded.
       </script> 
 
       <canvas id="blueCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
-      <script> /* This script initiates the cavas and puts the text on the canvas "myCanvas" */
+      <script> /* This script initiates the cavas and puts the text on the canvas "blueCanvas" */
         var canvas = document.getElementById('blueCanvas');
         var context = canvas.getContext("2d");
         context.font = '20pt Calibri';
         context.fillStyle = "black";
-        context.fillText("image anaylsis: blue", 10, 20);
+        context.fillText("image anaylsis: blue", 10, 20); // displays "image anaylisis: blue" on cavas until image is uploaded 
        
     </div><!-- /content -->
     <div data-role="footer" data-position="fixed">
