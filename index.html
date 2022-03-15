@@ -157,8 +157,8 @@ Image may appear roatated when uploaded.
 
       <canvas id="blueCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
       <script> /* This script initiates the cavas and puts the text on the canvas "blueCanvas" */
-        var canvasBlue = document.getElementById('blueCanvas');
-        var contextBlue = canvas.getContext("2d");
+        var canvas = document.getElementById('blueCanvas');
+        var context = canvas.getContext("2d");
         context.font = '20pt Calibri';
         context.fillStyle = "black";
         context.fillText("image anaylsis: blue", 10, 20); // displays "image anaylisis: blue" on cavas until image is uploaded 
