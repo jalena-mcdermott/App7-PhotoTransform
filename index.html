@@ -102,13 +102,19 @@ Image may appear roatated when uploaded.
 
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
           
-            <canvas id="blueCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
-      <script> /* This script initiates the cavas and puts the text on the canvas "blueCanvas" */
-        var canvas = document.getElementById('blueCanvas');
-        var context = canvas.getContext("2d");
-        context.font = '20pt Calibri';
-        context.fillStyle = "black";
-        context.fillText("image anaylsis: blue", 10, 20); // displays "image anaylisis: blue" on cavas until image is uploaded 
+        var canvasBlue = document.getElementById ('blueCanvas')
+        var ctxBlue = canvas.getContext("2d")
+        var imageData = context.getImageData (0,0,600,500)
+        var data = imageData.data
+        
+        for(var i=0, n= data.length; 1 < n; i += 4) {
+           var red = data [i]
+           var green = data[i + 1]
+        }
+         
+        data[i]=0
+        data [i + 1] = 0;
+
           
           
         } // end of img.onload
@@ -151,8 +157,8 @@ Image may appear roatated when uploaded.
 
       <canvas id="blueCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
       <script> /* This script initiates the cavas and puts the text on the canvas "blueCanvas" */
-        var canvas = document.getElementById('blueCanvas');
-        var context = canvas.getContext("2d");
+        var canvasBlue = document.getElementById('blueCanvas');
+        var contextBlue = canvas.getContext("2d");
         context.font = '20pt Calibri';
         context.fillStyle = "black";
         context.fillText("image anaylsis: blue", 10, 20); // displays "image anaylisis: blue" on cavas until image is uploaded 
