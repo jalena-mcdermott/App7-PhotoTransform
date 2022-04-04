@@ -47,9 +47,9 @@ Unable to upload an image onto the first canvas
   console.log("This message will be displayed on the Javascript debugging console"); // command that displays the message that will be shown on the javascript debugging console
 
 /* detectVerticalSquash & drawImageIOSFix = are functions that are critical due to a flaw in the iPhone camera software that squishes any photos displayed on an HTML5 canvas element. https://github.com/stomita/ios-imagefile-megapixel */
- function detectVerticalSquash(img) {
+ function detecctVerticalSquash(img) {
   var iw = img.naturalWidth, ih = img.naturalHeight;
-  var canvas = document.createElement('canvas');
+  var canvas = document.createElement('myCanvas');
   canvas.width = 1;
   canvas.height = ih;
   var ctx = canvas.getContext('2d');
