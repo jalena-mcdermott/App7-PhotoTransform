@@ -32,7 +32,7 @@ Image may appear roatated when uploaded.
 Unable to upload an image onto the first canvas
 -->
 
- <head>
+<head> 
   <meta charset="utf-8">
   <title>Photo Transform</title>
   <meta name="viewport" content="width=device-width, initial-scale=.7">
@@ -41,12 +41,12 @@ Unable to upload an image onto the first canvas
   <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
   <script src="https://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 
- <script>
+  <script> <!--beginning of the script-->
   var docMod = document.lastModified; // gets last modified date and time of the index.html file
   console.log("This file last modified  " + docMod); // displays last modified date and time in the javascipt browser console 
-  console.log("This is the debugging console"); //this will display a message on the javascript debugging console (press Ctrl + Shift + I to open console)
-/* detectVerticalSquash & drawImageIOSFix = are functions that are critical due to a flaw in the iPhone camera software that squishes any photos displayed on an HTML5 canvas element. https://github.com/stomita/ios-imagefile-megapixel
-*/
+  console.log("This message will be displayed on the Javascript debugging console"); // command that displays the message that will be shown on the javascript debugging console
+
+/* detectVerticalSquash & drawImageIOSFix = are functions that are critical due to a flaw in the iPhone camera software that squishes any photos displayed on an HTML5 canvas element. https://github.com/stomita/ios-imagefile-megapixel */
  function detectVerticalSquash(img) {
   var iw = img.naturalWidth, ih = img.naturalHeight;
   var canvas = document.createElement('canvas');
@@ -79,44 +79,51 @@ Unable to upload an image onto the first canvas
 
 /* window.onload necessary to keep javascripts from running before the app gets a chance to load entirely. */
  window.onload = function() {
-  var fileInput = document.getElementById('fileInput');
-  var messageDisplayArea = document.getElementById('messageDisplayArea');
+  var fileInput = document.getElementById('fileInput'); // command that saves a fileInput from the user to a variable called "fileInput," which is executed using the HTML code: <input type="file" id="fileInput" STYLE="background-color: #FF6600;">
+  var messageDisplayArea = document.getElementById('messageDisplayArea'); // command that codes for the messageDisplay area that is located above the canvas
+  
+  
   /* fileInput.addEventListener looks for any change in the <input> tag indicating that the user has selected a file (picture). */
   fileInput.addEventListener('change', function(e) {
     var file = fileInput.files[0];
     var imageType = /image.*/;
+   
     /* if (file.type.match(imageType)) checks that the selected file is indeed an image. */
     if (file.type.match(imageType)) {
-      /* new FileReader(); and reader.onload start some kind of file reading process in javaScript. I do not understand why this is necessary although it may simply slow things down to let the image load. */
+      /* new FileReader(); and reader.onload start some kind of file reading process in javaScript. */
       var reader = new FileReader();
-      reader.onload = function(e) {
+     
+      reader.onload = function(e) { // function contains an event handler that is executed when the load event is triggered
         /* messageDisplayArea.innerHTML not needed but allows you to send a message at this point in the program. */
-        messageDisplayArea.innerHTML = "You picked an image!";
-        /* new Image() and img.onload start some kind of new image creation process in javaScript. I do not understand why this is necessary although it may simply slow things down to let the image load. */
-        var img = new Image();
-        img.onload = function() {
+        messageDisplayArea.innerHTML = "You picked an image!"; // command displays text on the messageDisplayArea page
+        /* new Image() and img.onload starts a new image creation process in javaScript. */
+       
+        var img = new Image(); // command sets the image as a variable
+        img.onload = function() { // function draws and prints the image on the first canvas
           /*This finally draws the image onto the first drawing canvas. The specific canvas is referred to by "context". This is established down in the HTML part of the file just under the first <canvas> tag. If we weren't worried about fixing an iPhone bug we would use context.drawImage(image, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500) instead of drawImageIOSFix */
         
           drawImageIOSFix(context,img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500);
 
-       /*  +++++++++++++++ BEGIN IMAGE PROCESSING +++++++++++++++ */
-       /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+          /*  +++++++++++++++ BEGIN IMAGE PROCESSING +++++++++++++++ */
+          /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
           
-        var canvasBlue = document.getElementById ('blueCanvas')
-        var contextBlue = canvasBlue.getContext("2d")
-        var imageData = context.getImageData (0,0,600,500)
-        var data = imageData.data;
-        
-        for(var i=0, n= data.length; 1 < n; i += 4) {
-            data[i]=0
-            data [i + 1] = 0;
-           }
+         var canvas2 = document.getElementById('myCanvas2'); // command codes for the display of only the blue intensities of each pixel to be shown on the second canvas
+         var context2 = canvas2.getContext("2d"); // command provides context for the drawing surface of a <canvas> element
          
-         contextBlue.putImageData(imageData, 0, 0);
-       
+         var imageData = context.getImageData(0, 0, 600, 500);
+         var data = imageData.data; // command codes for the pixel data of an area of the canvas object
           
+         for(var i = 0, n = data.length; i < n; i += 4) { // command that codes for the image only displaying the blue intensities of each pixel
+         
+          data[i] = 0; // command that sets the green intensity to zero
+          data[i + 1] = 0; // command that sets the red intensity to zero
+         }
+         
+         context2.putImageData(imageData, 0, 0); // command that applies to all functions to the image that will be displayed on the second canvas
+         
+         
         } // end of img.onload
         
         img.src = reader.result;
@@ -137,33 +144,38 @@ Unable to upload an image onto the first canvas
  <body>
   <div data-role="page">
     <div data-role="header">
+     
+     
     <h1>Primary Colors</h1></div><!-- /header -->
     <div data-role="content">	
-      <h2>Push button to take picture.</h2>
+     
+      <h2>Push the button to take a picture.</h2> <!--text header will appear in the space below the main header-->
       <div>
-        Press orange button to create or choose image file:
+       
+        Press button to create or choose an image file: <!--code allows an image file to be uploaded-->
         <input type="file" id="fileInput" STYLE="background-color: #FF6600;">
       </div>
+     
       <div id="messageDisplayArea"></div>
       
-     <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas> 
-      <script> 
-        var canvas = document.getElementById('myCanvas'); 
-        var context = canvas.getContext("2d"); 
-        context.font = '20pt Calibri';
-        context.fillStyle = "black";
-        context.fillText("Original image will go here!", 10, 20);
+      <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas> <!--HTML and script code for setting up the first canvas, which will display the original image that is uploaded-->
+      <script> /* This script initiates the cavas and puts the text on the canvas "myCanvas" */
+        var canvas = document.getElementById('myCanvas'); // command calls "myCanvas" and saves it to the canvas variable
+        var context = canvas.getContext("2d"); // command provides context for drawing the surface of a <canvas> element
+        context.font = '20pt Calibri'; // command sets the font size and style
+        context.fillStyle = "black"; // command sets the text fill color
+        context.fillText("Original image will go here!", 10, 20); // command sets the coordinates of the image
      </script>
-
-      <canvas id="blueCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
-      <script> /* This script initiates the cavas and puts the text on the canvas "blueCanvas" */
-        var canvasBlue = document.getElementById('blueCanvas');
-        var contextBlue = canvasBlue.getContext("2d");
-        contextBlue.font = '20pt Calibri';
-        contextBlue.fillStyle = "black";
-        contextBlue.fillText("image anaylsis: blue", 10, 20); // displays "image anaylisis: blue" on cavas until image is uploaded 
+     
+      <canvas id="myCanvas2" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas> <!--HTML and script code for setting up the second canvas, which will display the same image with only the blue intensities of the pixels being shown-->
+      <script>
+      var canvas2 = document.getElementById('myCanvas2'); // command calls "myCanvas2" and saves it to the canvas variable
+      var context2 = canvas2.getContext("2d"); // command provides context for drawing the surface of a <canvas> element
+      context2.font = '20pt Calibri'; // command sets the font size and style
+      context2.fillStyle = "black"; // command sets the text fill color
+      context2.fillText("Colored image will go here!", 10,20); // command sets the coordinates the image
+     </script>
        
-     </script>
     </div><!-- /content -->
     <div data-role="footer" data-position="fixed">
       <p>DIY Diagnostics</p>
