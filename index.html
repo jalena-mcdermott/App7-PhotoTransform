@@ -109,8 +109,8 @@ Unable to upload an image onto the first canvas
 
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
           
-         var canvas2 = document.getElementById('myCanvas2'); // command codes for the display of only the blue intensities of each pixel to be shown on the second canvas
-         var context2 = canvas2.getContext("2d"); // command provides context for the drawing surface of a <canvas> element
+         var canvasBlue = document.getElementById('myCanvasBlue'); // command codes for the display of only the blue intensities of each pixel to be shown on the second canvas
+         var contextBlue = canvasBlue.getContext("2d"); // command provides context for the drawing surface of a <canvas> element
          
          var imageData = context.getImageData(0, 0, 600, 500);
          var data = imageData.data; // command codes for the pixel data of an area of the canvas object
@@ -121,7 +121,7 @@ Unable to upload an image onto the first canvas
           data[i + 1] = 0; // command that sets the red intensity to zero
          }
          
-         context2.putImageData(imageData, 0, 0); // command that applies to all functions to the image that will be displayed on the second canvas
+         contextBlue.putImageData(imageData, 0, 0); // command that applies to all functions to the image that will be displayed on the second canvas
          
          
         } // end of img.onload
@@ -134,7 +134,7 @@ Unable to upload an image onto the first canvas
     else
     {
       // this is what happens if the orignial file selected is not an image file
-      messageDisplayArea.innerHTML = "File not supported!"
+      messageDisplayArea.innerHTML = "File not supported"
     } // end of the else statement if file in NOT an image
   }); // end of the fileInput.addEventListener function
  } // end of the window.onload function
@@ -167,13 +167,13 @@ Unable to upload an image onto the first canvas
         context.fillText("Original image will go here!", 10, 20); // command sets the coordinates of the image
      </script>
      
-      <canvas id="myCanvas2" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas> <!--HTML and script code for setting up the second canvas, which will display the same image with only the blue intensities of the pixels being shown-->
+      <canvas id="myCanvasBlue" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas> <!--HTML and script code for setting up the second canvas, which will display the same image with only the blue intensities of the pixels being shown-->
       <script>
-      var canvas2 = document.getElementById('myCanvas2'); // command calls "myCanvas2" and saves it to the canvas variable
-      var context2 = canvas2.getContext("2d"); // command provides context for drawing the surface of a <canvas> element
-      context2.font = '20pt Calibri'; // command sets the font size and style
-      context2.fillStyle = "black"; // command sets the text fill color
-      context2.fillText("Colored image will go here!", 10,20); // command sets the coordinates the image
+      var canvasBlue = document.getElementById('myCanvasBlue'); // command calls "myCanvas2" and saves it to the canvas variable
+      var contextBlue = canvasBlue.getContext("2d"); // command provides context for drawing the surface of a <canvas> element
+      contextBlue.font = '20pt Calibri'; // command sets the font size and style
+      contextBlue.fillStyle = "black"; // command sets the text fill color
+      contextBlue.fillText("Colored image will go here!", 10,20); // command sets the coordinates the image
      </script>
        
     </div><!-- /content -->
